@@ -21,7 +21,7 @@
       <li><a href="#">Page 1</a></li>
       <li><a href="#">Page 2</a></li>
       <li><a href="#">Page 3</a></li>
-      <li><a href="#">Edit tariffs</a></li>
+      <li><a href="editTariff">Edit tariffs</a></li>
     </ul>
     <form class="navbar-form navbar-left" action="/action_page.php">
       <div class="form-group">

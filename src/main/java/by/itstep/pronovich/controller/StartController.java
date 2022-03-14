@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class StartController {
 	
-	@GetMapping( "/start")
+	@GetMapping("/start")
 	public String start() {
 		return "start";
 	}
@@ -16,8 +16,5 @@ public class StartController {
 	public String home() {
 		return "start";
 	}
-	@GetMapping( "/admin")
-	public String admin() {
-		return "admin";
-	}
+
 }

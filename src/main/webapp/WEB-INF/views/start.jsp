@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="by.itstep.pronovich.dao.ProductDao"%>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.DriverManager"%>
+<%@ page import="java.sql.PreparedStatement"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.sql.SQLException"%>
+<%@ page import="java.sql.Statement"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -11,6 +17,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+	ProductDao.createTable();
+	%>
+
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -18,7 +28,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
+      <li><a href="catalog">Tariff Catalog</a></li>
       <li><a href="#">Page 2</a></li>
       <li><a href="#">Page 3</a></li>
     </ul>
