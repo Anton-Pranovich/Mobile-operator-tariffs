@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class ConnectionUrl {
 	private static final Logger log = LoggerFactory.getLogger(ConnectionUrl.class);
-	public static final String URL = "jdbc:mysql://localhost:3306/tariffcatalog?serverTimezone=Europe/Minsk";
+	public static final String URL = "jdbc:mysql://localhost:3306/Mobile_operator_tariffs?serverTimezone=Europe/Minsk";
 	static {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

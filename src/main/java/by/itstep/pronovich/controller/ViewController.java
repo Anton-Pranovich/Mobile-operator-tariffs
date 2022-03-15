@@ -32,9 +32,6 @@ public class ViewController {
 
 	@GetMapping("/{id}")
 	public String studentPage(@ModelAttribute Tariff tariff) {
-
-		System.out.println(
-				tariff.getName() + tariff.getOperator() + tariff.getSubscriptionFee() + tariff.getDescription());
 		return "tariff";
 	}
 }

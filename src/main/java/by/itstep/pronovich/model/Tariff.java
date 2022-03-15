@@ -20,30 +20,49 @@ public class Tariff {
 	@Size(min = 3, max = 20)
 	private String name;
 	@NotNull
-	@Size(min = 3, max = 20)
+	@Size(min = 2, max = 5)
 	private String operator;
 	@NotNull
 	private Double subscriptionFee;
 	@NotNull
 	private String description;
+	@NotNull
+	private Double callCost;
+	@NotNull
+	private Double smsCost;
+	@NotNull
+	private Double numberOfMegabytes;
 
 	public Tariff() {
 		super();
 	}
 
-	public Tariff(Long id, String name, String operator, Double subscriptionFee, String description) {
+	public Tariff(Long id, @NotNull @Size(min = 3, max = 20) String name,
+			@NotNull @Size(min = 3, max = 20) String operator, @NotNull Double subscriptionFee,
+			@NotNull String description, @NotNull Double callCost, @NotNull Double smsCost,
+			@NotNull Double numberOfMegabytes) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.operator = operator;
 		this.subscriptionFee = subscriptionFee;
 		this.description = description;
+		this.callCost = callCost;
+		this.smsCost = smsCost;
+		this.numberOfMegabytes = numberOfMegabytes;
 	}
 
-	public Tariff(String name, String operator, Double subscriptionFee, String description) {
+	public Tariff(@NotNull @Size(min = 3, max = 20) String name, @NotNull @Size(min = 3, max = 20) String operator,
+			@NotNull Double subscriptionFee, @NotNull String description, @NotNull Double callCost,
+			@NotNull Double smsCost, @NotNull Double numberOfMegabytes) {
+		super();
 		this.name = name;
 		this.operator = operator;
 		this.subscriptionFee = subscriptionFee;
 		this.description = description;
+		this.callCost = callCost;
+		this.smsCost = smsCost;
+		this.numberOfMegabytes = numberOfMegabytes;
 	}
 
 	public Long getId() {
@@ -86,14 +105,41 @@ public class Tariff {
 		this.description = description;
 	}
 
+	public Double getCallCost() {
+		return callCost;
+	}
+
+	public void setCallCost(Double callCost) {
+		this.callCost = callCost;
+	}
+
+	public Double getSmsCost() {
+		return smsCost;
+	}
+
+	public void setSmsCost(Double smsCost) {
+		this.smsCost = smsCost;
+	}
+
+	public Double getNumberOfMegabytes() {
+		return numberOfMegabytes;
+	}
+
+	public void setNumberOfMegabytes(Double numberOfMegabytes) {
+		this.numberOfMegabytes = numberOfMegabytes;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((callCost == null) ? 0 : callCost.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((numberOfMegabytes == null) ? 0 : numberOfMegabytes.hashCode());
 		result = prime * result + ((operator == null) ? 0 : operator.hashCode());
+		result = prime * result + ((smsCost == null) ? 0 : smsCost.hashCode());
 		result = prime * result + ((subscriptionFee == null) ? 0 : subscriptionFee.hashCode());
 		return result;
 	}
@@ -107,6 +153,11 @@ public class Tariff {
 		if (getClass() != obj.getClass())
 			return false;
 		Tariff other = (Tariff) obj;
+		if (callCost == null) {
+			if (other.callCost != null)
+				return false;
+		} else if (!callCost.equals(other.callCost))
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -122,10 +173,20 @@ public class Tariff {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (numberOfMegabytes == null) {
+			if (other.numberOfMegabytes != null)
+				return false;
+		} else if (!numberOfMegabytes.equals(other.numberOfMegabytes))
+			return false;
 		if (operator == null) {
 			if (other.operator != null)
 				return false;
 		} else if (!operator.equals(other.operator))
+			return false;
+		if (smsCost == null) {
+			if (other.smsCost != null)
+				return false;
+		} else if (!smsCost.equals(other.smsCost))
 			return false;
 		if (subscriptionFee == null) {
 			if (other.subscriptionFee != null)
@@ -138,7 +199,8 @@ public class Tariff {
 	@Override
 	public String toString() {
 		return "Tariff [id=" + id + ", name=" + name + ", operator=" + operator + ", subscriptionFee=" + subscriptionFee
-				+ ", description=" + description + "]";
+				+ ", description=" + description + ", callCost=" + callCost + ", smsCost=" + smsCost
+				+ ", numberOfMegabytes=" + numberOfMegabytes + "]";
 	}
 
 }

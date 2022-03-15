@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
 <title><spring:message code="label.title" /></title>
 <style type="text/css">
 .red {
@@ -15,8 +16,7 @@
 </style>
 </head>
 <body>
-
-	<div
+<div
 		style="text-align: right; padding: 5px; margin: 5px 0px; background: #ccc;">
 		<a href="${pageContext.request.contextPath}/addTariff?lang=en">Tariff
 			(English)</a> &nbsp;|&nbsp; <a
@@ -24,7 +24,7 @@
 			(Russian)</a>
 	</div>
 
-	<form:form modelAttribute="tariff" action="" method="post">
+	<form:form modelAttribute="tariff" action="" method="put">
 		<p>
 			<form:label path="name">
 				<spring:message code="label.name" />
@@ -75,12 +75,11 @@
 			<form:errors path="description" cssClass="red" />
 		</p>
 		<form:label path="">
-			<spring:message code="label.submit" var="labelSubmit"></spring:message>
-			<input type="submit" value="${labelSubmit}" />
+			<spring:message code="label.change" var="labelChange"></spring:message>
+			<input type="submit" value="${labelChange}" />
 		</form:label>
 	</form:form>
 
 		<a href="editTariff" >&#8592;	<spring:message code="label.back"></spring:message></a>
-	
 </body>
 </html>

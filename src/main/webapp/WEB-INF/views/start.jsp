@@ -17,9 +17,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
+<%-- 	<%
 	ProductDao.createTable();
-	%>
+	%> --%>
 
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
