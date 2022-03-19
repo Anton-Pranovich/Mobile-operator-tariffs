@@ -18,7 +18,7 @@ public class ViewController {
 	private List<Tariff> tariffCatalog;
 	private static final Logger log = LoggerFactory.getLogger(ViewController.class);
 
-	@GetMapping("/catalog")
+	@GetMapping("user/catalog")
 	public String show(Model model) {
 		try {
 			tariffCatalog = ProductDao.showProduct();
@@ -30,7 +30,7 @@ public class ViewController {
 		return "catalog";
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("user/{id}")
 	public String studentPage(@ModelAttribute Tariff tariff) {
 		return "tariff";
 	}

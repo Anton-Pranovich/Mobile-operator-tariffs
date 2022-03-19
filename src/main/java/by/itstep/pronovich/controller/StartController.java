@@ -12,6 +12,12 @@ public class StartController {
 		return "start";
 	}
 	
+	@GetMapping("/user/start")
+	public String userStart() {
+		return "start";
+	}
+	
+	
 	@GetMapping("/")
 	public String home() {
 		return "start";

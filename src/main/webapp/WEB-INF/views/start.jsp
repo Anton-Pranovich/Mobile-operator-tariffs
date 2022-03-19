@@ -7,6 +7,8 @@
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.SQLException"%>
 <%@ page import="java.sql.Statement"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -17,9 +19,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- 	<%
-	ProductDao.createTable();
-	%> --%>
 
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -31,6 +30,11 @@
       <li><a href="catalog">Tariff Catalog</a></li>
       <li><a href="#">Page 2</a></li>
       <li><a href="#">Page 3</a></li>
+      <li><form action="/logout" method="POST">
+				<sec:csrfInput/>
+				<input type="submit" value="Logout">
+				</form>
+				</li>
     </ul>
     <form class="navbar-form navbar-left" action="/action_page.php">
       <div class="form-group">

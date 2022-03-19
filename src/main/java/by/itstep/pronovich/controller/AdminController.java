@@ -6,19 +6,19 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import by.itstep.pronovich.dao.ProductDao;
 import by.itstep.pronovich.exception.AddException;
 import by.itstep.pronovich.exception.DaoSQLException;
 import by.itstep.pronovich.model.Tariff;
 
-@RestController
+@Controller
 public class AdminController {
 
 	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
@@ -29,9 +29,9 @@ public class AdminController {
 //		this.repository = repository;
 //	}
 
-	@GetMapping("/admin")
+	@GetMapping("/logIn")
 	public String admin() {
-		return "admin";
+		return "logIn";
 	}
 
 	@GetMapping("/editTariff")
@@ -41,6 +41,11 @@ public class AdminController {
 
 	@GetMapping("/adminStart")
 	public String adminStart() {
+		return "adminStart";
+	}
+	
+	@GetMapping("/admin/adminStart")
+	public String adminStartSecurity() {
 		return "adminStart";
 	}
 

@@ -9,7 +9,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous" />
-<link href="resources/tariffCatalog.css" rel="stylesheet"
+<link href="resources/css/tariffCatalog.css" rel="stylesheet"
 	type="text/css">
 <title>Insert title here</title>
 </head>
@@ -30,7 +30,7 @@
 		<c:forEach items="${tariffCatalog}" var="tariff">
 			<tr>
 				<td><a
-					href="/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}"><c:out
+					href="/user/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}"><c:out
 							value="${tariff.id}">
 						</c:out></a></td>
 				<td><c:out value="${tariff.name}" /></td>
@@ -40,6 +40,12 @@
 				<td><c:out value=" ${tariff.smsCost}" /></td>
 				<td><c:out value=" ${tariff.numberOfMegabytes}" /></td>
 				<td><c:out value=" ${tariff.description}" /></td>
+				<td>
+					<button type="button" class="btn btn-primary mb-2"
+						onclick="window.location.href = 'tariff/${tariff.id}/updateTariff?id=${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}'">Update</button>
+					<button type="button" class="btn btn-primary mb-2"
+						onclick="window.location.href = 'tariff/delete?id=${tariff.id}'">Delete</button>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
