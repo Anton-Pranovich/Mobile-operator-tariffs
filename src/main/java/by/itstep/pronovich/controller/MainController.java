@@ -13,13 +13,13 @@ import by.itstep.pronovich.model.Tariff;
 @Controller
 public class MainController {
 
-	@RequestMapping(value = { "/addTariff" })
+	@RequestMapping(value = { "/user/addTariff" })
 	public String staticResource(Model model) {
 		model.addAttribute("tariff", new Tariff());
 		return "addTariff";
 	}
 
-	@RequestMapping(value = "/delete")
+	@RequestMapping(value = "/user/tariff/delete")
 	public String deleteProduct(@ModelAttribute Tariff tariff, Model model) {
 		try {
 			ProductDao.delete(tariff.getId());
@@ -27,19 +27,19 @@ public class MainController {
 			// model.addAttribute("message_action", message_action);
 		} catch (DaoSQLException e) {
 			model.addAttribute("message_action", "An error occurred while deleting the product.");
-			return "redirect:/products";
+			return "redirect:/catalog";
 		}
 		// model.addAttribute("message_action", message_action);
-		return "redirect:/catalog";
+		return "redirect:/user/catalog";
 	}
 
-	@RequestMapping(value = "/{id}/updateProduct")
+	@RequestMapping(value = "/user/updateTariff/{id}")
 	public String refUpdateProductPage(@ModelAttribute Tariff tariff) {// эта аннотация автоматически запишет в Model
 																		// объект product и передаст дальше
 		return "update"; // на этой странице мы можем получить данные о переданном объекте
 	}
 
-	@GetMapping(value = "/{id}/update")
+	@GetMapping(value = "/user/{id}/update")
 	public String updateProduct(@ModelAttribute Tariff tariff, Model model) {// здесь мы уже принимаем данные из формы
 																				// изменения объекта
 		try {
@@ -48,7 +48,7 @@ public class MainController {
 			// model.addAttribute("message_action", message_action);
 		} catch (DaoSQLException e) {
 			model.addAttribute("message_action", "Problems with changing product.");
-			return "redirect:/products";
+			return "redirect:/catalog";
 		}
 		return "redirect:/catalog";
 	}

@@ -16,13 +16,13 @@
 </head>
 <body>
 
-	<div
+<%-- 	<div
 		style="text-align: right; padding: 5px; margin: 5px 0px; background: #ccc;">
 		<a href="${pageContext.request.contextPath}/user/addTariff?lang=en">Tariff
 			(English)</a> &nbsp;|&nbsp; <a
 			href="${pageContext.request.contextPath}/user/addTariff?lang=ru">Тариф
 			(Russian)</a>
-	</div>
+	</div> --%>
 
 	<form:form modelAttribute="tariff" action="" method="post">
 		<p>
@@ -80,7 +80,7 @@
 		</form:label>
 	</form:form>
 
-		<a href="start" >&#8592;	<spring:message code="label.back"></spring:message></a>
+		<a href="catalog" >&#8592;	<spring:message code="label.back"></spring:message></a>
 	
 </body>
 </html>

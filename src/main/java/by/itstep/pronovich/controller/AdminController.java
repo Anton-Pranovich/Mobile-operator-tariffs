@@ -1,6 +1,7 @@
 package by.itstep.pronovich.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -20,7 +21,7 @@ import by.itstep.pronovich.model.Tariff;
 
 @Controller
 public class AdminController {
-
+	private List<Tariff> tariffCatalog;
 	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 
 //	private final TariffRepository repository;
@@ -29,27 +30,34 @@ public class AdminController {
 //		this.repository = repository;
 //	}
 
-	@GetMapping("/logIn")
+	@GetMapping("/login")
 	public String admin() {
-		return "logIn";
+		return "login";
 	}
 
-	@GetMapping("/editTariff")
+	@GetMapping("/user/editTariff")
 	public String editTariff() {
 		return "editTariff";
 	}
 
-	@GetMapping("/adminStart")
-	public String adminStart() {
-		return "adminStart";
+	@GetMapping("user/catalog")
+	public String show(Model model) {
+		try {
+			tariffCatalog = ProductDao.showProduct();
+			model.addAttribute("list", tariffCatalog);
+		} catch (SQLException e) {
+			log.error("SQLException", e);
+		}
+		model.addAttribute("tariffCatalog", tariffCatalog);
+		return "adminCatalog";
 	}
 	
-	@GetMapping("/admin/adminStart")
+	@GetMapping("/user/start")
 	public String adminStartSecurity() {
 		return "adminStart";
 	}
 
-	@PostMapping("/addTariff")
+	@PostMapping("/user/addTariff")
 	public String addProduct(@ModelAttribute @Valid Tariff tariff, BindingResult bindingResult, Model model)
 			throws SQLException {
 		// String answer;

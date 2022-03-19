@@ -23,7 +23,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="POST" action="logIn">
+	<form method="POST" action="login">
 		<div class="login">
 			<div class="container">
 				<div class="col-lg-12 login-box">

@@ -31,13 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// Cross-site reference
 		http 
 			.authorizeRequests()
-			.antMatchers("/**").hasRole("USER")
-			.antMatchers("/admin/**").hasRole("ADMIN")
-			.and().logout().logoutUrl("/logout").logoutSuccessUrl("/logIn")
+			.antMatchers("/**").permitAll()
+			.antMatchers("/user/**").hasRole("USER")
+			.and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
 			.and()
 			.formLogin()
-			//.defaultSuccessUrl("/adminStart")
-			.loginPage("/logIn")
+			.loginPage("/login")
 			.successHandler(successHandler).permitAll();
 	}
 	@Override
