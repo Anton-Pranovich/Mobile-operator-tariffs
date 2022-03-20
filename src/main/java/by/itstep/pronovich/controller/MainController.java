@@ -1,5 +1,9 @@
 package by.itstep.pronovich.controller;
 
+import java.sql.SQLException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +16,7 @@ import by.itstep.pronovich.model.Tariff;
 
 @Controller
 public class MainController {
-
+	private static final Logger log = LoggerFactory.getLogger(ProductDao.class);
 	@RequestMapping(value = { "/user/addTariff" })
 	public String staticResource(Model model) {
 		model.addAttribute("tariff", new Tariff());
@@ -33,14 +37,14 @@ public class MainController {
 		return "redirect:/user/catalog";
 	}
 
-	@RequestMapping(value = "/user/updateTariff/{id}")
+	@RequestMapping(value = "user/updateTariff/{id}")
 	public String refUpdateProductPage(@ModelAttribute Tariff tariff) {// эта аннотация автоматически запишет в Model
 																		// объект product и передаст дальше
 		return "update"; // на этой странице мы можем получить данные о переданном объекте
 	}
 
-	@GetMapping(value = "/user/{id}/update")
-	public String updateProduct(@ModelAttribute Tariff tariff, Model model) {// здесь мы уже принимаем данные из формы
+	@GetMapping(value = "user/update")
+	public String updateProduct(@ModelAttribute Tariff tariff, Model model) throws SQLException {// здесь мы уже принимаем данные из формы
 																				// изменения объекта
 		try {
 			ProductDao.update(tariff);
@@ -48,8 +52,9 @@ public class MainController {
 			// model.addAttribute("message_action", message_action);
 		} catch (DaoSQLException e) {
 			model.addAttribute("message_action", "Problems with changing product.");
-			return "redirect:/catalog";
+			log.info("tariff hasn't update ");
+			return "redirect:/user/catalog";
 		}
-		return "redirect:/catalog";
+		return "redirect:/user/catalog";
 	}
 }

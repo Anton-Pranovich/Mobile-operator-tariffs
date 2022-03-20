@@ -18,8 +18,8 @@ import by.itstep.pronovich.model.Tariff;
 public class ProductDao {
 
 	private static final String SQL_DELETE_TARIFF_QUERY = "DELETE FROM tariffs WHERE id = ?";
-	private static final String SQL_UPDATE_TARIFF_QUERY = "UPDATE tariffs SET name = ?,operator = ?,subscriptionFee=?,call_cost=?,sms_cost=?,number_of_megabytes=?,des=?cription WHERE id = ?";
-	private static final String SQL_ADD_TARIFF_QUERY = " INSERT INTO tariffs (name, operator, subscriptionFee, call_cost, sms_cost, number_of_megabytes, description ) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')";
+	private static final String SQL_UPDATE_TARIFF_QUERY = "UPDATE tariffs SET name = ?, operator = ?, subscriptionFee=?, call_cost=?, sms_cost=?, number_of_megabytes=?, description=? WHERE id = ?";
+	private static final String SQL_ADD_TARIFF_QUERY = "INSERT INTO tariffs (name, operator, subscriptionFee, call_cost, sms_cost, number_of_megabytes, description ) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')";
 	private static final String SQL_FIND_TARIFF_LIKE_QUERY = "SELECT * FROM tariffs WHERE name LIKE ?";
 	private static final String SQL_SELECT_ALL_TARIFF_QUERY = "SELECT * FROM tariffs";
 
@@ -46,29 +46,6 @@ public class ProductDao {
 		return tariffCatalog;
 	}
 
-//	public static void createTable() throws ClassNotFoundException, SQLException, DaoSQLException {
-//		Connection connection = null;
-//		try {
-//			// getting a database connection
-//			connection = ConnectionUrl.getConnection();
-//
-//			System.out.println(connection.getMetaData().getURL());
-//
-//			Statement statement = connection.createStatement();
-//
-//			// executing a query that creates a user table
-//			boolean createTable = statement.execute("CREATE TABLE if not exists " + "tariffs (id BIGINT PRIMARY KEY "
-//					+ "AUTO_INCREMENT, name VARCHAR(100), " + "operator VARCHAR(100), "
-//					+ "subscriptionFee DECIMAL(15,2),"  + "callCost DECIMAL(15,2),"+ "smsCost DECIMAL(15,2),"+ "numberOfMegabytes DECIMAL(15,2)"+ " description TEXT);");
-//			if (createTable) {
-//				log.info("Table users created");
-//			}
-//		} catch (SQLException e) {
-//			log.error("Can't create table", e);
-//			throw new DaoSQLException("Can't create table", e);
-//		}
-//	}
-
 	public static boolean addProduct(String name, String operator, String subscriptionFee, String description,
 			String callCost, String smsCost, String numberOfMegabytes) throws SQLException, AddException {
 		boolean answer = false;
@@ -89,32 +66,15 @@ public class ProductDao {
 		return answer;
 	}
 
-//	public static boolean findProduct(String id) throws SQLException, FindProductException {
-//		boolean answer = false;
-//		int findId = Integer.parseInt(id);
-//		Connection connection = ConnectionUrl.getConnection();
-//		String find = String.format("SELECT name FROM goods WHERE id = " + findId);
-//		Statement statement = connection.prepareStatement(find);
-//		ResultSet rs = statement.executeQuery(find);
-//		if (rs.next()) {
-//			log.info("product has been found.");
-//			answer = true;
-//		} else {
-//			log.error("product not found.");
-//			throw new FindProductException();
-//		}
-//		return answer;
-//	}
-
 	/**
 	 * Edit tariff method
+	 * @throws SQLException 
 	 */
-	public static void update(Tariff tariff) throws DaoSQLException {
-
-		try (Connection connection = ConnectionUrl.getConnection()) {
-			PreparedStatement statement;
-			statement = connection.prepareStatement(SQL_UPDATE_TARIFF_QUERY);
-
+	public static void update(Tariff tariff) throws DaoSQLException, SQLException {
+		Connection connection = ConnectionUrl.getConnection();
+		try  {
+			PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_TARIFF_QUERY);
+			System.out.println(tariff.getName());
 			statement.setString(1, tariff.getName());
 			statement.setString(2, tariff.getOperator());
 			statement.setDouble(3, tariff.getSubscriptionFee());
@@ -123,9 +83,12 @@ public class ProductDao {
 			statement.setDouble(6, tariff.getNumberOfMegabytes());
 			statement.setString(7, tariff.getDescription());
 			statement.setLong(8, tariff.getId());
+			
 			statement.executeUpdate();
-			statement.close();
+			//statement.close();
+			log.info("product has been updated ");
 		} catch (SQLException | DaoSQLException | NullPointerException e) {
+			log.info("product has problems in updating ");
 			throw new DaoSQLException("Error in updating product by name dao method " + e.getMessage(), e);
 		}
 	}

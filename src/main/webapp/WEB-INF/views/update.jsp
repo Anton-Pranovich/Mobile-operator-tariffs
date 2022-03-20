@@ -16,15 +16,15 @@
 </head>
 <body>
 
-<%-- 	<div
+	<div
 		style="text-align: right; padding: 5px; margin: 5px 0px; background: #ccc;">
 		<a href="${pageContext.request.contextPath}/user/addTariff?lang=en">Tariff
 			(English)</a> &nbsp;|&nbsp; <a
 			href="${pageContext.request.contextPath}/user/addTariff?lang=ru">Тариф
 			(Russian)</a>
-	</div> --%>
+	</div>
 
-	<form:form modelAttribute="tariff" action="" method="post">
+	<form:form modelAttribute="tariff" action="/user/update" method="get">
 		<p>
 			<form:label path="name">
 				<spring:message code="label.name" />

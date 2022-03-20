@@ -42,7 +42,7 @@
 				<td><c:out value=" ${tariff.description}" /></td>
 				<td>
 					<button type="button" class="btn btn-primary mb-2"
-						onclick="window.location.href = 'updateTariff${tariff.id}?id=${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}'">Update</button>
+						onclick="window.location.href = 'updateTariff/${tariff.id}?id=${tariff.id}&name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}'">Update</button>
 					<button type="button" class="btn btn-primary mb-2"
 						onclick="window.location.href = 'tariff/delete?id=${tariff.id}'">Delete</button>
 				</td>
