@@ -94,27 +94,4 @@ public class AdminController {
 		return "addTariff";
 	}
 
-//	@PutMapping("/tariff/{id}")
-//	Tariff replaceEmployee(@RequestBody Tariff newTariff, @PathVariable Long id) {
-//
-//		return repository.findById(id).map(tariff -> {
-//			tariff.setName(newTariff.getName());
-//			tariff.setOperator(newTariff.getOperator());
-//			tariff.setSubscriptionFee(newTariff.getSubscriptionFee());
-//			tariff.setDescription(newTariff.getDescription());
-//			tariff.setCallCost(newTariff.getCallCost());
-//			tariff.setSmsCost(newTariff.getSmsCost());
-//			tariff.setNumberOfMegabytes(newTariff.getNumberOfMegabytes());
-//			return repository.save(tariff);
-//		}).orElseGet(() -> {
-//			newTariff.setId(id);
-//			return repository.save(newTariff);
-//		});
-//	}
-//
-//	@DeleteMapping("/cars/{id}")
-//	ResponseEntity<?> deleteTariff(@PathVariable Long id) {
-//		repository.deleteById(id);
-//		return ResponseEntity.noContent().build();
-//	}
 }

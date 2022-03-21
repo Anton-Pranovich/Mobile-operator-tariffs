@@ -27,13 +27,10 @@ public class MainController {
 	public String deleteProduct(@ModelAttribute Tariff tariff, Model model) {
 		try {
 			ProductDao.delete(tariff.getId());
-			// message_action = "Successfully deleted";
-			// model.addAttribute("message_action", message_action);
 		} catch (DaoSQLException e) {
 			model.addAttribute("message_action", "An error occurred while deleting the product.");
 			return "redirect:/catalog";
 		}
-		// model.addAttribute("message_action", message_action);
 		return "redirect:/user/catalog";
 	}
 
@@ -43,13 +40,11 @@ public class MainController {
 		return "update"; // на этой странице мы можем получить данные о переданном объекте
 	}
 
-	@GetMapping(value = "user/update")
+	@GetMapping(value = "user/update/{id}")
 	public String updateProduct(@ModelAttribute Tariff tariff, Model model) throws SQLException {// здесь мы уже принимаем данные из формы
 																				// изменения объекта
 		try {
 			ProductDao.update(tariff);
-			// message_action = "Successfully updated";
-			// model.addAttribute("message_action", message_action);
 		} catch (DaoSQLException e) {
 			model.addAttribute("message_action", "Problems with changing product.");
 			log.info("tariff hasn't update ");

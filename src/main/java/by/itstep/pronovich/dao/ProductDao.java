@@ -71,9 +71,10 @@ public class ProductDao {
 	 * @throws SQLException 
 	 */
 	public static void update(Tariff tariff) throws DaoSQLException, SQLException {
-		Connection connection = ConnectionUrl.getConnection();
-		try  {
-			PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_TARIFF_QUERY);
+		
+		try (Connection connection = ConnectionUrl.getConnection()) {
+			PreparedStatement statement;
+			statement = connection.prepareStatement(SQL_UPDATE_TARIFF_QUERY);
 			System.out.println(tariff.getName());
 			statement.setString(1, tariff.getName());
 			statement.setString(2, tariff.getOperator());
@@ -85,7 +86,7 @@ public class ProductDao {
 			statement.setLong(8, tariff.getId());
 			
 			statement.executeUpdate();
-			//statement.close();
+			statement.close();
 			log.info("product has been updated ");
 		} catch (SQLException | DaoSQLException | NullPointerException e) {
 			log.info("product has problems in updating ");

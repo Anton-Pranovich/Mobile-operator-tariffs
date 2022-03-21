@@ -24,7 +24,7 @@
 			(Russian)</a>
 	</div>
 
-	<form:form modelAttribute="tariff" action="/user/update" method="get">
+	<form:form modelAttribute="tariff" action="/user/update/${tariff.id}" method="get">
 		<p>
 			<form:label path="name">
 				<spring:message code="label.name" />
