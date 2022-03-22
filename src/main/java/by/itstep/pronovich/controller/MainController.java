@@ -1,21 +1,31 @@
 package by.itstep.pronovich.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import by.itstep.pronovich.dao.ProductDao;
 import by.itstep.pronovich.exception.DaoSQLException;
 import by.itstep.pronovich.model.Tariff;
+import by.itstep.pronovich.service.impl.TariffServiceImpl;
 
 @Controller
 public class MainController {
+	@Autowired
+	public TariffServiceImpl service;
+	private List<Tariff> tariffCatalog = new ArrayList<>();
+	private String message;
+	private String message_action;
+	
 	private static final Logger log = LoggerFactory.getLogger(ProductDao.class);
 	@RequestMapping(value = { "/user/addTariff" })
 	public String staticResource(Model model) {
@@ -39,17 +49,24 @@ public class MainController {
 																		// объект product и передаст дальше
 		return "update"; // на этой странице мы можем получить данные о переданном объекте
 	}
+	
+	@RequestMapping(value = "/search")
+	public String searchProduct(@RequestParam (defaultValue = "") String search_tariff, @RequestParam(value = "message_action", defaultValue = "View all tariffs catalog")String message_act, Model model) throws SQLException {
+		System.out.println(search_tariff+"main controller");
+			if (!search_tariff.isEmpty()) {
+				tariffCatalog = service.loadFindTariffByName(search_tariff);
+				message_action = (tariffCatalog.isEmpty()) ? "Not found anything" : "Successfully searched";
+				model.addAttribute("list", tariffCatalog);
+			} else {
+				tariffCatalog = ProductDao.showTariff();
+				message_action = message_act;
+				model.addAttribute("list", tariffCatalog);
+			}
+			message = "Found " + tariffCatalog.size() + " tariff(s)";
+			model.addAttribute("tariffCatalog", tariffCatalog);
+			model.addAttribute("message", message);
+			model.addAttribute("message_action", message_action);
 
-	@GetMapping(value = "user/update/{id}")
-	public String updateProduct(@ModelAttribute Tariff tariff, Model model) throws SQLException {// здесь мы уже принимаем данные из формы
-																				// изменения объекта
-		try {
-			ProductDao.update(tariff);
-		} catch (DaoSQLException e) {
-			model.addAttribute("message_action", "Problems with changing product.");
-			log.info("tariff hasn't update ");
-			return "redirect:/user/catalog";
-		}
-		return "redirect:/user/catalog";
+		return "adminCatalog";
 	}
 }

@@ -40,12 +40,6 @@
 				<td><c:out value=" ${tariff.smsCost}" /></td>
 				<td><c:out value=" ${tariff.numberOfMegabytes}" /></td>
 				<td><c:out value=" ${tariff.description}" /></td>
-				<%-- <td>
-					<button type="button" class="btn btn-primary mb-2"
-						onclick="window.location.href = 'tariff/${tariff.id}/updateTariff?id=${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}'">Update</button>
-					<button type="button" class="btn btn-primary mb-2"
-						onclick="window.location.href = 'tariff/delete?id=${tariff.id}'">Delete</button>
-				</td> --%>
 			</tr>
 		</c:forEach>
 	</table>

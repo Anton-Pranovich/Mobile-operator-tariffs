@@ -21,7 +21,7 @@ public class ViewController {
 	@GetMapping("catalog")
 	public String show(Model model) {
 		try {
-			tariffCatalog = ProductDao.showProduct();
+			tariffCatalog = ProductDao.showTariff();
 			model.addAttribute("list", tariffCatalog);
 		} catch (SQLException e) {
 			log.error("SQLException", e);

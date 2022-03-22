@@ -16,15 +16,15 @@
 </head>
 <body>
 
-	<div
+<%-- 	<div
 		style="text-align: right; padding: 5px; margin: 5px 0px; background: #ccc;">
-		<a href="${pageContext.request.contextPath}/user/addTariff?lang=en">Tariff
+		<a href="${pageContext.request.contextPath}/user/updateTariff/${tariff.id}?lang=en">Tariff
 			(English)</a> &nbsp;|&nbsp; <a
-			href="${pageContext.request.contextPath}/user/addTariff?lang=ru">Тариф
+			href="${pageContext.request.contextPath}/user/updateTariff/${tariff.id}?lang=ru">Тариф
 			(Russian)</a>
-	</div>
+	</div> --%>
 
-	<form:form modelAttribute="tariff" action="/user/update/${tariff.id}" method="get">
+	<form:form modelAttribute="tariff" action="/user/update/${tariff.id}" method="post">
 		<p>
 			<form:label path="name">
 				<spring:message code="label.name" />
@@ -75,12 +75,12 @@
 			<form:errors path="description" cssClass="red" />
 		</p>
 		<form:label path="">
-			<spring:message code="label.submit" var="labelSubmit"></spring:message>
-			<input type="submit" value="${labelSubmit}" />
+			<spring:message code="label.update" var="labelUpdate"></spring:message>
+			<input type="submit" value="${labelUpdate}" />
 		</form:label>
 	</form:form>
 
-		<a href="catalog" >&#8592;	<spring:message code="label.back"></spring:message></a>
+		<a href="/user/catalog" >&#8592;	<spring:message code="label.back"></spring:message></a>
 	
 </body>
 </html>

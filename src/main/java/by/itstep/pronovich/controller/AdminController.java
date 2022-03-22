@@ -24,11 +24,6 @@ public class AdminController {
 	private List<Tariff> tariffCatalog;
 	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 
-//	private final TariffRepository repository;
-//
-//	public AdminController(TariffRepository repository) {
-//		this.repository = repository;
-//	}
 
 	@GetMapping("/login")
 	public String admin() {
@@ -43,7 +38,7 @@ public class AdminController {
 	@GetMapping("user/catalog")
 	public String show(Model model) {
 		try {
-			tariffCatalog = ProductDao.showProduct();
+			tariffCatalog = ProductDao.showTariff();
 			model.addAttribute("list", tariffCatalog);
 		} catch (SQLException e) {
 			log.error("SQLException", e);
@@ -60,14 +55,10 @@ public class AdminController {
 	@PostMapping("/user/addTariff")
 	public String addProduct(@ModelAttribute @Valid Tariff tariff, BindingResult bindingResult, Model model)
 			throws SQLException {
-		// String answer;
 		if (bindingResult.hasErrors()) {
-			log.info("Returning addProduct.jsp page");
-			// answer = "Invalid input data";
-			// model.addAttribute("answer", answer);
+			log.info("Returning addTariff.jsp page");
 			return "addTariff";
 		}
-
 		String name = tariff.getName();
 		String operator = tariff.getOperator();
 		String subscriptionFee = Double.toString(tariff.getSubscriptionFee());
@@ -81,17 +72,29 @@ public class AdminController {
 			try {
 				ProductDao.addProduct(name, operator, subscriptionFee, description, callCost, smsCost,
 						numberOfMegabytes);
-				// answer = "Product has been added";
-				log.info("Product has been added");
+				log.info("Tariff has been added");
 			} catch (AddException e) {
-				// answer = "throw AddException";
-				log.error("Product adding exception", e);
+				log.error("Tariff adding exception", e);
 			}
-			// model.addAttribute("answer", answer);
 		} catch (DaoSQLException e) {
 			log.error("SQLException", e);
 		}
 		return "addTariff";
+	}
+	@PostMapping(value = "user/update/{id}")
+	public String updateProduct(@ModelAttribute @Valid Tariff tariff, BindingResult bindingResult, Model model) throws SQLException {// здесь мы уже принимаем данные из формы
+		if (bindingResult.hasErrors()) {
+			log.info("Returning UpdateTariff.jsp page");
+			return "update";
+		}																// изменения объекта
+		try {
+			ProductDao.update(tariff);
+		} catch (DaoSQLException e) {
+			model.addAttribute("message_action", "Problems with changing product.");
+			log.info("tariff hasn't update ");
+			return "redirect:/user/catalog";
+		}
+		return "redirect:/user/catalog";
 	}
 
 }

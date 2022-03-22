@@ -37,11 +37,11 @@
 				</form>
 				</li>
     </ul>
-    <form class="navbar-form navbar-left" action="/action_page.php">
+    <form class="navbar-form navbar-left" action="/search" method="get" name="searchForm">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search" name="search">
+        <input type="text" class="form-control" placeholder="Search" name="search_tariff">
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" class="btn btn-default">Search</button>
     </form>
   </div>
 </nav>

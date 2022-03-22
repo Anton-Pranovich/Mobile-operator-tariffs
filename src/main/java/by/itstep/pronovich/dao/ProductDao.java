@@ -25,7 +25,14 @@ public class ProductDao {
 
 	private static final Logger log = LoggerFactory.getLogger(ProductDao.class);
 
-	public static List<Tariff> showProduct() throws SQLException {
+	/**
+	 * 
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	
+	public static List<Tariff> showTariff() throws SQLException {
 		Connection connection = ConnectionUrl.getConnection();
 		Statement statement = connection.createStatement();
 		List<Tariff> tariffCatalog = new ArrayList<>();
@@ -109,24 +116,31 @@ public class ProductDao {
 	}
 
 	/**
-	 * Метод поиска товара по названию
+	 * Find method by name
 	 */
-	public List<Tariff> findByName(String newName) throws DaoSQLException {
-		List<Tariff> list = new ArrayList<>();
+	public static List<Tariff> findByName(String newName) throws DaoSQLException {
+		System.out.println(newName+"крткудьб");
+		List<Tariff> tariffCatalog = new ArrayList<>();
 		try (Connection connection = ConnectionUrl.getConnection();
 				PreparedStatement statement = connection.prepareStatement(SQL_FIND_TARIFF_LIKE_QUERY);) {
 			statement.setString(1, "%" + newName + "%");
-			ResultSet rs = statement.executeQuery();
-			while (rs.next()) {
-				Long id = rs.getLong("id");
-				String name = rs.getString("name");
-				double price = rs.getDouble("price");
-				list.add(new Tariff(id, name, name, price, name, price, price, price));
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				long id = Long.parseLong(result.getString(1));
+				String name = result.getString(2);
+				String operator = result.getString(3);
+				double subscriptionFee = Double.parseDouble(result.getString(4));
+				String description = result.getString(8);
+				double callCost = Double.parseDouble(result.getString(5));
+				double smsCost = Double.parseDouble(result.getString(6));
+				double numberOfMegabytes = Double.parseDouble(result.getString(7));
+				tariffCatalog.add(
+						new Tariff(id, name, operator, subscriptionFee, description, callCost, smsCost, numberOfMegabytes));
 			}
+		
 		} catch (SQLException | DaoSQLException e) {
 			throw new DaoSQLException("Error in finding by name dao method " + e.getMessage(), e);
 		}
-		return list;
-
+		return tariffCatalog;
 	}
 }
