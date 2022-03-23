@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="by.itstep.pronovich.dao.ProductDao"%>
+<%@ page import="by.itstep.pronovich.dao.impl.TariffDaoImpl"%>
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page import="java.sql.PreparedStatement"%>
@@ -37,7 +37,7 @@
 				</form>
 				</li>
     </ul>
-    <form class="navbar-form navbar-left" action="/search" method="get" name="searchForm">
+    <form class="navbar-form navbar-left" action="/user/search" method="get" name="searchForm">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Search" name="search_tariff">
       </div>

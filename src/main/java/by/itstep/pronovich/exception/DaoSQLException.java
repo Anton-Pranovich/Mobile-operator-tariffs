@@ -2,9 +2,6 @@ package by.itstep.pronovich.exception;
 
 public class DaoSQLException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 9104515699486850300L;
 
 	public DaoSQLException() {
@@ -26,6 +23,5 @@ public class DaoSQLException extends RuntimeException {
 	public DaoSQLException(Throwable cause) {
 		super(cause);
 	}
-
 
 }

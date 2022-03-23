@@ -28,10 +28,10 @@
 				<li><a href="#">Page 3</a></li>
 			
 			</ul>
-			<form class="navbar-form navbar-left" action="/action_page.php">
+			<form class="navbar-form navbar-left" action="/search" method="get" name="searchForm">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Search"
-						name="search">
+						name="search_tariff">
 				</div>
 				<button type="submit" class="btn btn-default">Submit</button>
 			</form>

@@ -1,4 +1,4 @@
-package by.itstep.pronovich.dao;
+package by.itstep.pronovich.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,12 +10,16 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
+import by.itstep.pronovich.dao.ConnectionUrl;
+import by.itstep.pronovich.dao.TariffDao;
 import by.itstep.pronovich.exception.AddException;
 import by.itstep.pronovich.exception.DaoSQLException;
 import by.itstep.pronovich.model.Tariff;
 
-public class ProductDao {
+@Repository
+public class TariffDaoImpl implements TariffDao {
 
 	private static final String SQL_DELETE_TARIFF_QUERY = "DELETE FROM tariffs WHERE id = ?";
 	private static final String SQL_UPDATE_TARIFF_QUERY = "UPDATE tariffs SET name = ?, operator = ?, subscriptionFee=?, call_cost=?, sms_cost=?, number_of_megabytes=?, description=? WHERE id = ?";
@@ -23,16 +27,9 @@ public class ProductDao {
 	private static final String SQL_FIND_TARIFF_LIKE_QUERY = "SELECT * FROM tariffs WHERE name LIKE ?";
 	private static final String SQL_SELECT_ALL_TARIFF_QUERY = "SELECT * FROM tariffs";
 
-	private static final Logger log = LoggerFactory.getLogger(ProductDao.class);
+	private static final Logger log = LoggerFactory.getLogger(TariffDaoImpl.class);
 
-	/**
-	 * 
-	 * 
-	 * @return
-	 * @throws SQLException
-	 */
-	
-	public static List<Tariff> showTariff() throws SQLException {
+	public List<Tariff> showTariff() throws SQLException {
 		Connection connection = ConnectionUrl.getConnection();
 		Statement statement = connection.createStatement();
 		List<Tariff> tariffCatalog = new ArrayList<>();
@@ -49,13 +46,12 @@ public class ProductDao {
 			tariffCatalog.add(
 					new Tariff(id, name, operator, subscriptionFee, description, callCost, smsCost, numberOfMegabytes));
 		}
-		log.info("show products");
+		log.info("show tariffs");
 		return tariffCatalog;
 	}
 
-	public static boolean addProduct(String name, String operator, String subscriptionFee, String description,
-			String callCost, String smsCost, String numberOfMegabytes) throws SQLException, AddException {
-		boolean answer = false;
+	public void addProduct(String name, String operator, String subscriptionFee, String description, String callCost,
+			String smsCost, String numberOfMegabytes) throws SQLException, AddException {
 		Connection connection = ConnectionUrl.getConnection();
 		Statement statement = connection.createStatement();
 		String[] data = { name, operator, subscriptionFee, callCost, smsCost, numberOfMegabytes, description };
@@ -64,25 +60,23 @@ public class ProductDao {
 					data[6]);
 			System.out.println(query);
 			statement.execute(query);
-			answer = true;
-			log.info("product has been added ");
+			log.info("tariff has been added ");
 		} else {
 			log.error("throw addException ");
 			throw new AddException();
 		}
-		return answer;
 	}
 
 	/**
 	 * Edit tariff method
-	 * @throws SQLException 
+	 * 
+	 * @throws SQLException
 	 */
-	public static void update(Tariff tariff) throws DaoSQLException, SQLException {
-		
+	public void update(Tariff tariff) throws DaoSQLException, SQLException {
+
 		try (Connection connection = ConnectionUrl.getConnection()) {
 			PreparedStatement statement;
 			statement = connection.prepareStatement(SQL_UPDATE_TARIFF_QUERY);
-			System.out.println(tariff.getName());
 			statement.setString(1, tariff.getName());
 			statement.setString(2, tariff.getOperator());
 			statement.setDouble(3, tariff.getSubscriptionFee());
@@ -91,12 +85,12 @@ public class ProductDao {
 			statement.setDouble(6, tariff.getNumberOfMegabytes());
 			statement.setString(7, tariff.getDescription());
 			statement.setLong(8, tariff.getId());
-			
+
 			statement.executeUpdate();
 			statement.close();
-			log.info("product has been updated ");
+			log.info("tariff has been updated ");
 		} catch (SQLException | DaoSQLException | NullPointerException e) {
-			log.info("product has problems in updating ");
+			log.info("tariff has problems in updating ", e);
 			throw new DaoSQLException("Error in updating product by name dao method " + e.getMessage(), e);
 		}
 	}
@@ -104,7 +98,7 @@ public class ProductDao {
 	/**
 	 * Delete tariff method by id
 	 */
-	public static void delete(Long id) throws DaoSQLException {
+	public void delete(Long id) throws DaoSQLException {
 
 		try (Connection connection = ConnectionUrl.getConnection();
 				PreparedStatement statement = connection.prepareStatement(SQL_DELETE_TARIFF_QUERY);) {
@@ -118,8 +112,8 @@ public class ProductDao {
 	/**
 	 * Find method by name
 	 */
-	public static List<Tariff> findByName(String newName) throws DaoSQLException {
-		System.out.println(newName+"крткудьб");
+	public List<Tariff> findByName(String newName) throws DaoSQLException {
+		System.out.println(newName + "крткудьб");
 		List<Tariff> tariffCatalog = new ArrayList<>();
 		try (Connection connection = ConnectionUrl.getConnection();
 				PreparedStatement statement = connection.prepareStatement(SQL_FIND_TARIFF_LIKE_QUERY);) {
@@ -134,10 +128,10 @@ public class ProductDao {
 				double callCost = Double.parseDouble(result.getString(5));
 				double smsCost = Double.parseDouble(result.getString(6));
 				double numberOfMegabytes = Double.parseDouble(result.getString(7));
-				tariffCatalog.add(
-						new Tariff(id, name, operator, subscriptionFee, description, callCost, smsCost, numberOfMegabytes));
+				tariffCatalog.add(new Tariff(id, name, operator, subscriptionFee, description, callCost, smsCost,
+						numberOfMegabytes));
 			}
-		
+
 		} catch (SQLException | DaoSQLException e) {
 			throw new DaoSQLException("Error in finding by name dao method " + e.getMessage(), e);
 		}

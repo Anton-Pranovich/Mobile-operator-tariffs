@@ -7,5 +7,4 @@ import by.itstep.pronovich.model.Tariff;
 
 public interface TariffService {
 	public List<Tariff> loadFindTariffByName(String name) throws ServiceException;
-	//public List<Tariff> loadAll() throws ServiceException;
 }

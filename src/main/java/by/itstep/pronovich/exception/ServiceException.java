@@ -2,9 +2,6 @@ package by.itstep.pronovich.exception;
 
 public class ServiceException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4042409234115653421L;
 
 	public ServiceException() {

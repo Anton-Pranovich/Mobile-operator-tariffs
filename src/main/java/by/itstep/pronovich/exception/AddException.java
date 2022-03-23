@@ -2,9 +2,6 @@ package by.itstep.pronovich.exception;
 
 public class AddException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -364462486249130521L;
 
 	public AddException() {

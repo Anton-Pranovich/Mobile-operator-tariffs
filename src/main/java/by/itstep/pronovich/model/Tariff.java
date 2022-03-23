@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "authors")
+@Table(name = "tariffs")
 public class Tariff {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
