@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div>Personal product page for mobile tariff by ID  ${tariff.id}</div>
-		<p>tariff name is ${product.name}</p>
+		<p>tariff name is ${tariff.name}</p>
 		<p>tariff operator is ${tariff.operator}</p>
 		<p>tariff subscription fee is ${tariff.subscriptionFee}</p>
 		<p>tariff call cost is ${tariff.callCost}</p>

@@ -25,6 +25,7 @@ public class Tariff {
 	@NotNull
 	private Double subscriptionFee;
 	@NotNull
+	@Size(min = 10, max = 1000)
 	private String description;
 	@NotNull
 	private Double callCost;

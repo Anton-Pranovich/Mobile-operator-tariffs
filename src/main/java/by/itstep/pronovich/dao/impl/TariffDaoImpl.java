@@ -113,7 +113,6 @@ public class TariffDaoImpl implements TariffDao {
 	 * Find method by name
 	 */
 	public List<Tariff> findByName(String newName) throws DaoSQLException {
-		System.out.println(newName + "крткудьб");
 		List<Tariff> tariffCatalog = new ArrayList<>();
 		try (Connection connection = ConnectionUrl.getConnection();
 				PreparedStatement statement = connection.prepareStatement(SQL_FIND_TARIFF_LIKE_QUERY);) {
