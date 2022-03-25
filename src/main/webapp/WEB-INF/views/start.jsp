@@ -35,7 +35,7 @@
 				<a class="btn btn-info btn-lg" href="#">Contact us</a>
 			</div>
 			<div class="box-shadow d-none d-md-block">
-				<img
+				<img alt="image"
 					src="https://images.prismic.io/korus-connect%2Fe206adad-744c-4362-bd28-f88ebf38beda_asset+14.svg?auto=format%2Ccompress&amp;fit=max&amp;q=50">
 			</div>
 		</div>

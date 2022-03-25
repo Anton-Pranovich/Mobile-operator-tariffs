@@ -16,14 +16,6 @@
 </head>
 <body>
 
-<%-- 	<div
-		style="text-align: right; padding: 5px; margin: 5px 0px; background: #ccc;">
-		<a href="${pageContext.request.contextPath}/user/updateTariff/${tariff.id}?lang=en">Tariff
-			(English)</a> &nbsp;|&nbsp; <a
-			href="${pageContext.request.contextPath}/user/updateTariff/${tariff.id}?lang=ru">Тариф
-			(Russian)</a>
-	</div> --%>
-
 	<form:form modelAttribute="tariff" action="/user/update/${tariff.id}" method="post">
 		<p>
 			<form:label path="name">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -38,9 +39,22 @@
 				<td><c:out value=" ${tariff.smsCost}" /></td>
 				<td><c:out value=" ${tariff.numberOfMegabytes}" /></td>
 				<td><c:out value=" ${tariff.description}" /></td>
+					<sec:authorize access="hasRole('ADMIN')">
+								<td>
+					<button type="button" class="btn btn-primary mb-2"
+						onclick="window.location.href = 'updateTariff/${tariff.id}?id=${tariff.id}&name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}'">Update</button>
+					<button type="button" class="btn btn-primary mb-2"
+						onclick="window.location.href = 'tariff/delete?id=${tariff.id}'">Delete</button>
+				</td>
+				</sec:authorize>
 			</tr>
 		</c:forEach>
 	</table>
+	<sec:authorize access="hasRole('ADMIN')">
+	<a href="/user/start">Back</a>
+	</sec:authorize>
+		<sec:authorize access="!hasRole('ADMIN')">
 	<a href="start">Back</a>
+		</sec:authorize>
 </body>
 </html>

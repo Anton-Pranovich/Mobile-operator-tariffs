@@ -24,6 +24,10 @@
 						</form>
 					</li>
 				</sec:authorize>
+				<sec:authorize access="!hasRole('ADMIN')">
+					<li><a href="/login">Log In</a></li>
+				</sec:authorize>
+
 				<li class="nav-item"><a class="nav-link disabled" href="#">About
 						us</a></li>
 			</ul>

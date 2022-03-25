@@ -43,13 +43,13 @@ public class AdminController {
 			log.error("SQLException", e);
 		}
 		model.addAttribute("tariffCatalog", tariffCatalog);
-		return "adminCatalog";
+		return "catalog";
 	}
 
 	@GetMapping("/user/start")
 	public String adminStartSecurity() {
 		log.info("Show start page for user");
-		return "adminStart";
+		return "start";
 	}
 
 	@PostMapping("/user/addTariff")

@@ -23,6 +23,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<sec:authorize access="hasRole('ADMIN')">
+<%
+    String redirectURL = "user/start";
+    response.sendRedirect(redirectURL);
+%>
+</sec:authorize>
 	<form method="POST" action="login">
 		<div class="login">
 			<div class="container">
