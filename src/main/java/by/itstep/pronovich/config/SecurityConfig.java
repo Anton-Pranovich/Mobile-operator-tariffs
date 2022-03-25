@@ -19,11 +19,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication()
 			.withUser("user")
 			.password("{noop}password")
-			.roles("USER")
-			.and()
-			.withUser("admin")
-			.password("{noop}password")
 			.roles("ADMIN");
+//			.and()
+//			.withUser("admin")
+//			.password("{noop}password")
+//			.roles("ADMIN");
 	}
 
 	@Override
@@ -31,8 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// Cross-site reference
 		http 
 			.authorizeRequests()
+			.antMatchers("/user/**").hasRole("ADMIN")
 			.antMatchers("/**").permitAll()
-			.antMatchers("/user/**").hasRole("USER")
 			.and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
 			.and()
 			.formLogin()
