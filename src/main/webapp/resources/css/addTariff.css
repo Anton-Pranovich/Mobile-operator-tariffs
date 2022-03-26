@@ -1,12 +1,4 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
-
-
-.content-wrapper {
-    font-family: 'Poppins',  "Helvetica Neue", sans-serif,;
-    font-weight: 400;
-    padding: 20px 40px 60px;
-}
 
 .content-header{
     display:flex;

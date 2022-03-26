@@ -15,21 +15,20 @@
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="catalog">Tariff
 						Catalog</a></li>
+				<li class="nav-item"><a class="nav-link disabled" href="#">About
+						us</a></li>
 				<sec:authorize access="hasRole('ADMIN')">
-					<li><a href="addTariff">Add tariffs</a></li>
-					<li>
+					<li class="nav-item"><a class="nav-link" href="addTariff">Add tariffs</a></li>
+					<li class="nav-item">
 						<form action="/logout" method="POST">
 							<sec:csrfInput />
-							<input type="submit" value="Logout">
+							<input class="btn btn-light" type="submit" value="Logout">
 						</form>
 					</li>
 				</sec:authorize>
 				<sec:authorize access="!hasRole('ADMIN')">
-					<li><a href="/login">Log In</a></li>
+					<li class="nav-item"><a class="btn btn-light" href="/login">Log In</a></li>
 				</sec:authorize>
-
-				<li class="nav-item"><a class="nav-link disabled" href="#">About
-						us</a></li>
 			</ul>
 			<form class="form-inline mt-2 mt-md-0" action="/search" method="get"
 				name="searchForm">

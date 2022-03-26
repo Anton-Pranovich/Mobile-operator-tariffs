@@ -63,11 +63,6 @@ public class MainController {
 			Model model) throws SQLException {
 		if (!search_tariff.isEmpty()) {
 			tariffCatalog = service.loadFindTariffByName(search_tariff);
-//			if(tariffCatalog.size()>0) {
-//			model.addAttribute("list", tariffCatalog);
-//			}else {
-//				model.addAttribute(model)
-//			}
 			log.info("search parameters aren't empty ");
 		} else {
 			tariffCatalog = dao.showTariff();

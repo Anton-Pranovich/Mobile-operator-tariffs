@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link href="../../../../resources/css/page.css" rel="stylesheet"
+	type="text/css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
@@ -23,16 +25,14 @@
 	<jsp:include page='header.jsp'>
 		<jsp:param name="header" value="" />
 	</jsp:include>
-	
 
-	
 	<main class="main">
 		<div
 			class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
 			<div class="col-md-8 mx-auto my-5 banner-text">
 				<h2 class="display-3 font-weight-weight my-4">If we can
 					connect, we can create a better future.</h2>
-				<a class="btn btn-info btn-lg" href="#">Contact us</a>
+				<a class="btn btn-info btn-lg" href="#">About us</a>
 			</div>
 			<div class="box-shadow d-none d-md-block">
 				<img alt="image"
