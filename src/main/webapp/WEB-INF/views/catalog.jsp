@@ -46,11 +46,21 @@
 
 				<c:forEach items="${tariffCatalog}" var="tariff">
 					<tr>
-						<td><a
+							<sec:authorize access="hasRole('ADMIN')">
+				<td><a
 							href="/user/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}">
 								<c:out value="${tariff.id}">
 								</c:out>
 						</a></td>
+		</sec:authorize>
+		<sec:authorize access="!hasRole('ADMIN')">
+				<td><a
+							href="/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}">
+								<c:out value="${tariff.id}">
+								</c:out>
+						</a></td>
+		</sec:authorize>
+					
 						<td><c:out value="${tariff.name}" /></td>
 						<td><c:out value="${tariff.operator}" /></td>
 						<td><c:out value=" ${tariff.subscriptionFee}" /></td>
