@@ -34,9 +34,9 @@ public class ViewController {
 		return "catalog";
 	}
 
-	@GetMapping("user/{id}")
+	@GetMapping("admin/{id}")
 	public String tariffPage(@ModelAttribute Tariff tariff) {
-		log.info("Show personal tariff page for user");
+		log.info("Show personal tariff page for admin");
 		return "tariff";
 	}
 

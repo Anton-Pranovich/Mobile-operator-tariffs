@@ -29,14 +29,14 @@ public class MainController {
 
 	private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
-	@RequestMapping(value = { "/user/addTariff" })
+	@RequestMapping(value = { "/admin/addTariff" })
 	public String staticResource(Model model) {
 		model.addAttribute("tariff", new Tariff());
 		log.info("tarif has been added ");
 		return "addTariff";
 	}
 
-	@RequestMapping(value = "/user/tariff/delete")
+	@RequestMapping(value = "/admin/tariff/delete")
 	public String deleteProduct(@ModelAttribute Tariff tariff, Model model) {
 		try {
 			dao.delete(tariff.getId());
@@ -47,10 +47,10 @@ public class MainController {
 			log.error("tariff not deleted. Throw DaoSqlException ", e);
 			return "redirect:/catalog";
 		}
-		return "redirect:/user/catalog";
+		return "redirect:/admin/catalog";
 	}
 
-	@RequestMapping(value = "user/updateTariff/{id}")
+	@RequestMapping(value = "admin/updateTariff/{id}")
 	public String refUpdateProductPage(@ModelAttribute Tariff tariff) { // @ModelAttribute save tariff's data in Tariff
 																		// tariff
 		log.info("update tariff page ");
@@ -76,7 +76,7 @@ public class MainController {
 		return "catalog";
 	}
 
-	@RequestMapping(value = "/user/search")
+	@RequestMapping(value = "/admin/search")
 	public String searchTariff(@RequestParam(defaultValue = "") String search_tariff,
 			@RequestParam(value = "message_action", defaultValue = "View all tariffs catalog") String message_act,
 			Model model) throws SQLException {
@@ -91,6 +91,6 @@ public class MainController {
 		}
 		message = "Found " + tariffCatalog.size() + " tariff(s)";
 		model.addAttribute("tariffCatalog", tariffCatalog);
-		return "adminCatalog";
+		return "catalog";
 	}
 }

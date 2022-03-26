@@ -20,10 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.withUser("user")
 			.password("{noop}password")
 			.roles("ADMIN");
-//			.and()
-//			.withUser("admin")
-//			.password("{noop}password")
-//			.roles("ADMIN");
+
 	}
 
 	@Override
@@ -31,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// Cross-site reference
 		http 
 			.authorizeRequests()
-			.antMatchers("/user/**").hasRole("ADMIN")
+			.antMatchers("/admin/**").hasRole("ADMIN")
 			.antMatchers("/**").permitAll()
 			.and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
 			.and()

@@ -33,12 +33,12 @@ public class AdminController {
 		return "login";
 	}
 
-	@GetMapping("user/catalog")
+	@GetMapping("admin/catalog")
 	public String show(Model model) {
 		try {
 			tariffCatalog = dao.showTariff();
 			model.addAttribute("list", tariffCatalog);
-			log.info("Show all tariffs for user");
+			log.info("Show all tariffs for admin");
 		} catch (SQLException e) {
 			log.error("SQLException", e);
 		}
@@ -46,13 +46,13 @@ public class AdminController {
 		return "catalog";
 	}
 
-	@GetMapping("/user/start")
+	@GetMapping("/admin/start")
 	public String adminStartSecurity() {
-		log.info("Show start page for user");
+		log.info("Show start page for admin");
 		return "start";
 	}
 
-	@PostMapping("/user/addTariff")
+	@PostMapping("/admin/addTariff")
 	public String addProduct(@ModelAttribute @Valid Tariff tariff, BindingResult bindingResult, Model model)
 			throws SQLException {
 		if (bindingResult.hasErrors()) {
@@ -82,7 +82,7 @@ public class AdminController {
 		return "addTariff";
 	}
 
-	@PostMapping(value = "user/update/{id}")
+	@PostMapping(value = "admin/update/{id}")
 	public String updateProduct(@ModelAttribute @Valid Tariff tariff, BindingResult bindingResult, Model model)
 			throws SQLException {// Input tariffs data from form
 		if (bindingResult.hasErrors()) {
@@ -94,8 +94,8 @@ public class AdminController {
 		} catch (DaoSQLException e) {
 			model.addAttribute("message_action", "Problems with changing product.");
 			log.info("tariff hasn't update", e);
-			return "redirect:/user/catalog";
+			return "redirect:/admin/catalog";
 		}
-		return "redirect:/user/catalog";
+		return "redirect:/admin/catalog";
 	}
 }

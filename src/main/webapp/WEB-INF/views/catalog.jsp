@@ -48,7 +48,7 @@
 					<tr>
 							<sec:authorize access="hasRole('ADMIN')">
 				<td><a
-							href="/user/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}">
+							href="/admin/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}">
 								<c:out value="${tariff.id}">
 								</c:out>
 						</a></td>
@@ -81,7 +81,7 @@
 			</tbody>
 		</table>
 		<sec:authorize access="hasRole('ADMIN')">
-			<a href="/user/start">Back</a>
+			<a href="/admin/start">Back</a>
 		</sec:authorize>
 		<sec:authorize access="!hasRole('ADMIN')">
 			<a href="start">Back</a>
