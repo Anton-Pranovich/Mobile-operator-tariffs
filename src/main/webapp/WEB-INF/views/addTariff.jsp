@@ -29,9 +29,9 @@
 							<a href="start">&#8592; <spring:message code="label.back"></spring:message></a>
 
 							<div class="languages">
-								<a href="${pageContext.request.contextPath}/user/addTariff?lang=en">Tariff
+								<a href="${pageContext.request.contextPath}/admin/addTariff?lang=en">Tariff
 									(English)</a> &nbsp;|&nbsp; <a
-									href="${pageContext.request.contextPath}/user/addTariff?lang=ru">Тариф
+									href="${pageContext.request.contextPath}/admin/addTariff?lang=ru">Тариф
 									(Russian)</a>
 							</div>
 						</div>
