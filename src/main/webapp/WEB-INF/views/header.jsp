@@ -2,7 +2,7 @@
 	prefix="sec"%>
 <header>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">WebSiteName</a>
+		<span class="navbar-brand">Mobile operator tariffs</span>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarCollapse" aria-controls="navbarCollapse"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -10,15 +10,16 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
-				</a></li>
+					<li class="nav-item active"><a class="nav-link" href="start">Home
+							<span class="sr-only">(current)</span>
+					</a></li> 
 				<li class="nav-item"><a class="nav-link" href="catalog">Tariff
 						Catalog</a></li>
 				<li class="nav-item"><a class="nav-link disabled" href="#">About
 						us</a></li>
 				<sec:authorize access="hasRole('ADMIN')">
-					<li class="nav-item"><a class="nav-link" href="addTariff">Add tariffs</a></li>
+					<li class="nav-item"><a class="nav-link" href="addTariff">Add
+							tariffs</a></li>
 					<li class="nav-item">
 						<form action="/logout" method="POST">
 							<sec:csrfInput />
@@ -27,7 +28,8 @@
 					</li>
 				</sec:authorize>
 				<sec:authorize access="!hasRole('ADMIN')">
-					<li class="nav-item"><a class="btn btn-light" href="/login">Log In</a></li>
+					<li class="nav-item"><a class="btn btn-light" href="/login">Log
+							In</a></li>
 				</sec:authorize>
 			</ul>
 			<form class="form-inline mt-2 mt-md-0" action="/search" method="get"

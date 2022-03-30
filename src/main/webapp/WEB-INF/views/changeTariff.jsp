@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Change Tariff</title>
 <title><spring:message code="label.title" /></title>
 <style type="text/css">
 .red {

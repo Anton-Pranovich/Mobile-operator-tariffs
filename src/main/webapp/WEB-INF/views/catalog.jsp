@@ -29,7 +29,7 @@
 		<table class="table table-bordered">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Id</th>
+					
 					<th scope="col">Name</th>
 					<th scope="col">Mobile operator</th>
 					<th scope="col">Subscription fee</th>
@@ -49,19 +49,13 @@
 							<sec:authorize access="hasRole('ADMIN')">
 				<td><a
 							href="/admin/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}">
-								<c:out value="${tariff.id}">
-								</c:out>
+								<c:out value="${tariff.name}" />
 						</a></td>
 		</sec:authorize>
 		<sec:authorize access="!hasRole('ADMIN')">
-				<td><a
-							href="/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}">
-								<c:out value="${tariff.id}">
-								</c:out>
-						</a></td>
-		</sec:authorize>
-					
-						<td><c:out value="${tariff.name}" /></td>
+						<td><a
+							href="/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}"><c:out value="${tariff.name}" /></a></td>
+						</sec:authorize>
 						<td><c:out value="${tariff.operator}" /></td>
 						<td><c:out value=" ${tariff.subscriptionFee}" /></td>
 						<td><c:out value=" ${tariff.callCost}" /></td>

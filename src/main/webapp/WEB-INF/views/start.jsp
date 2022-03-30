@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>Start page</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link href="../../../../resources/css/page.css" rel="stylesheet"
@@ -32,7 +32,7 @@
 			<div class="col-md-8 mx-auto my-5 banner-text">
 				<h2 class="display-3 font-weight-weight my-4">If we can
 					connect, we can create a better future.</h2>
-				<a class="btn btn-info btn-lg" href="#">About us</a>
+				<a class="btn btn-info btn-lg" href="aboutUs">About us</a>
 			</div>
 			<div class="box-shadow d-none d-md-block">
 				<img alt="image"

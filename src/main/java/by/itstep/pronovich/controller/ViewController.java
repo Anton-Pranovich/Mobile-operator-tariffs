@@ -45,4 +45,15 @@ public class ViewController {
 		log.info("Show personal tariff page");
 		return "tariff";
 	}
+	
+	@GetMapping("aboutUs")
+	public String aboutUs() {
+		log.info("Show information about us");
+		return "aboutUs";
+	}
+	@GetMapping("admin/aboutUs")
+	public String adminAboutUs() {
+		log.info("Show information about us");
+		return "aboutUs";
+	}
 }
