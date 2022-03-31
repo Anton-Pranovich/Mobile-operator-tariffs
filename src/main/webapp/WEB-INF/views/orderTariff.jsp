@@ -29,21 +29,11 @@
 	<main>
 	<div class="content-header">
 			<sec:authorize access="hasRole('ADMIN')">
-			<a href="/admin/catalog">&#8592; <spring:message
-					code="label.back"></spring:message></a>
+			<a href="/admin/catalog">&#8592; back</a>
 		</sec:authorize>
 		<sec:authorize access="!hasRole('ADMIN')">
-			<a href="/catalog">&#8592; <spring:message
-					code="label.back"></spring:message></a>
+			<a href="/catalog">&#8592; back</a>
 		</sec:authorize>
-			
-					
-<%-- 							<div class="languages">
-								<a href="${pageContext.request.contextPath}/orderTariff/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&lang=en">Tariff
-									(English)</a> &nbsp;|&nbsp; <a
-									href="${pageContext.request.contextPath}/orderTariff/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&lang=ru">Тариф
-									(Russian)</a>
-							</div> --%>
 		</div>
 			<div class="form-content">
 							<div class="form-item">

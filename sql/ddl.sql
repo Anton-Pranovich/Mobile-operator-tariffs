@@ -1,5 +1,7 @@
 CREATE DATABASE Mobile_operator_tariffs;
+
 USE Mobile_operator_tariffs;
+
 CREATE TABLE if not exists tariffs (
 id BIGINT PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(100),

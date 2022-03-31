@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +25,14 @@
 		<br> <br>
 		<h1>&#128532; Sorry, we couldn't find the page you were looking
 			for.</h1>
-
-		<a href="start">Go Home</a>
+			<div class="pt-2">
+		<sec:authorize access="hasRole('ADMIN')">
+			<a href="/admin/start">Go Home</a>
+		</sec:authorize>
+		<sec:authorize access="!hasRole('ADMIN')">
+			<a href="/start">Go Home</a>
+		</sec:authorize>
+		</div>
 	</main>
 	<jsp:include page='footer.jsp'>
 		<jsp:param name="footer" value="" />

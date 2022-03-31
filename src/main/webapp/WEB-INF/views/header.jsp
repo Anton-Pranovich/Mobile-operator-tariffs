@@ -2,7 +2,7 @@
 	prefix="sec"%>
 <header>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-		<span class="navbar-brand">Mobile operator tariffs</span>
+		<span class="navbar-brand">Mobile operator</span>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarCollapse" aria-controls="navbarCollapse"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -12,15 +12,15 @@
 			<ul class="navbar-nav mr-auto">
 
 				<sec:authorize access="hasRole('ADMIN')">
-									<li class="nav-item active"><a class="nav-link" href="/admin/start">Home
+									<li class="nav-item "><a class="nav-link" href="/admin/start">Home
 							<span class="sr-only">(current)</span>
 					</a></li> 
 				<li class="nav-item"><a class="nav-link" href="/admin/catalog">Tariff
 						Catalog</a></li>
-				<li class="nav-item"><a class="nav-link disabled" href="/admin/aboutUs">About
+				<li class="nav-item"><a class="nav-link " href="/admin/aboutUs">About
 						us</a></li>
 					<li class="nav-item"><a class="nav-link" href="/admin/addTariff">Add
-							tariffs</a></li>
+							tariff</a></li>
 							<li class="nav-item"><a class="nav-link" href="/admin/orderList">Order list
 							</a></li>
 					<li class="nav-item">

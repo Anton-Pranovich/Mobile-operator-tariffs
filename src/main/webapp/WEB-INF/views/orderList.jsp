@@ -24,6 +24,11 @@
 		<jsp:param name="header" value="" />
 	</jsp:include>
 	<main>
+	<div class="pt-2">
+			<sec:authorize access="hasRole('ADMIN')">
+			<a href="/admin/start">&#8592; back</a>
+		</sec:authorize>
+		</div>
 		<h1 class="my-md-3">Order list</h1>
 		<table class="table table-bordered">
 			<thead class="thead-dark">
@@ -48,9 +53,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<sec:authorize access="hasRole('ADMIN')">
-			<a href="/admin/start">Back</a>
-		</sec:authorize>
+
 	</main>
 		<jsp:include page='footer.jsp'>
 		<jsp:param name="footer" value="" />

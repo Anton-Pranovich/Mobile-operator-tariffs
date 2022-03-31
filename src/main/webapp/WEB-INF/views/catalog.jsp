@@ -11,9 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catalog</title>
 <style type="text/css">
-  .transparent25 {
-    filter: alpha(Opacity=70);
-    opacity: 0.70; 
+  .transparent {
+  /*   opacity: 0.70; */ 
    }
 </style>
 <link rel="stylesheet"
@@ -32,6 +31,15 @@
 		<jsp:param name="header" value="" />
 	</jsp:include>
 	<main>
+	<div class="pt-2">
+		<sec:authorize access="hasRole('ADMIN')">
+			<a href="/admin/start">&#8592; back</a>
+		</sec:authorize>
+		<sec:authorize access="!hasRole('ADMIN')">
+			<a href="start">&#8592; back</a>
+		</sec:authorize>
+		</div>
+		<div class="col-md-10 mx-auto my-5">
 		<h1 class="my-md-3">Catalog</h1>
 		<table class="table table-bordered">
 			<thead class="thead-dark">
@@ -50,11 +58,7 @@
 				</tr>
 			</thead>
 			<tbody>
-
-			
-
 				<c:forEach items="${tariffCatalog}" var="tariff">
-
 					<tr>
 						<sec:authorize access="hasRole('ADMIN')">
 							<td><a
@@ -88,13 +92,8 @@
 				</c:if>
 			</tbody>
 		</table>
-		<sec:authorize access="hasRole('ADMIN')">
-			<a href="/admin/start">Back</a>
-		</sec:authorize>
-		<sec:authorize access="!hasRole('ADMIN')">
-			<a href="start">Back</a>
-		</sec:authorize>
-		<div><img class="transparent25" src="https://justarrived.by/media/cache/blog_big/uploads/App/Entity/Blog/abdd5d918045c7851d1fec4a0be62ec5277ca71d.jpeg"></div>
+		<div><img class="w-100 " style="opacity: 0.70" src="https://justarrived.by/media/cache/blog_big/uploads/App/Entity/Blog/abdd5d918045c7851d1fec4a0be62ec5277ca71d.jpeg"></div>
+		</div>
 	</main>
 
 	<jsp:include page='footer.jsp'>

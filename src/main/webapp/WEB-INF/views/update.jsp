@@ -26,78 +26,80 @@
 		<jsp:param name="header" value="" />
 	</jsp:include>
 	<main>
-		<div class="content-header">
-			<a href="/admin/catalog">&#8592; <spring:message
-					code="label.back"></spring:message></a>
+		<div class="pt-2">
+			<a href="/admin/catalog">&#8592; back</a>
 		</div>
 		<div class="form-content">
-		<form:form modelAttribute="tariff" action="/admin/update/${tariff.id}"
-			method="post">
 			<div class="form-item">
-				<form:label path="name">
-					<spring:message code="label.name" />
-					<form:input class="form-control" type="text" path="name"
-						name="name" />
-				</form:label>
-				<form:errors path="name" class="form-error" />
+				<h3 class="form-heading">Update tariff</h3>
+				<p class="form-subheading">All fields are required</p>
 			</div>
-			<div class="form-item">
-				<form:label path="operator">
-					<spring:message code="label.operator" />
-					<form:input class="form-control" type="text" path="operator"
-						name="operator" />
-				</form:label>
-				<form:errors path="operator" cssClass="red" />
-			</div>
-			<div class="form-item">
-				<form:label path="subscriptionFee">
-					<spring:message code="label.subscriptionFee" />
-					<form:input class="form-control" type="text" path="subscriptionFee"
-						name="subscriptionFee" />
-				</form:label>
-				<form:errors path="subscriptionFee" cssClass="red" />
-			</div>
-			<div class="form-item">
-				<form:label path="callCost">
-					<spring:message code="label.callCost" />
-					<form:input class="form-control" type="text" path="callCost"
-						name="callCost" />
-				</form:label>
-				<form:errors path="callCost" cssClass="red" />
-			</div>
-			<div class="form-item">
-				<form:label path="smsCost">
-					<spring:message code="label.smsCost" />
-					<form:input class="form-control" type="text" path="smsCost"
-						name="smsCost" />
-				</form:label>
-				<form:errors path="smsCost" cssClass="red" />
-			</div>
-			<div class="form-item">
-				<form:label path="numberOfMegabytes">
-					<spring:message code="label.numberOfMegabytes" />
-					<form:input class="form-control" type="text"
-						path="numberOfMegabytes" name="numberOfMegabytes" />
-				</form:label>
-				<form:errors path="numberOfMegabytes" cssClass="red" />
-			</div>
-			<div class="form-item">
-				<form:label path="description">
-					<spring:message code="label.description" />
-					<form:input class="form-control" type="text" path="description"
-						name="description" />
-				</form:label>
-				<form:errors path="description" cssClass="red" />
-			</div>
-			<div class="form-item">
-				<form:label path="">
-					<spring:message code="label.update" var="labelUpdate"></spring:message>
-					<input class="btn btn-dark" type="submit" value="${labelUpdate}" />
-				</form:label>
-			</div>
-		</form:form>
+			<form:form modelAttribute="tariff"
+				action="/admin/update/${tariff.id}" method="post">
+				<div class="form-item">
+					<form:label path="name">
+						tariff name
+						<form:input class="form-control" type="text" path="name"
+							name="name" />
+					</form:label>
+					<form:errors path="name" class="form-error" />
+				</div>
+				<div class="form-item">
+					<form:label path="operator">
+						operator name
+						<form:input class="form-control" type="text" path="operator"
+							name="operator" />
+					</form:label>
+					<form:errors path="operator" cssClass="red" />
+				</div>
+				<div class="form-item">
+					<form:label path="subscriptionFee">
+						subscription fee
+						<form:input class="form-control" type="text"
+							path="subscriptionFee" name="subscriptionFee" />
+					</form:label>
+					<form:errors path="subscriptionFee" cssClass="red" />
+				</div>
+				<div class="form-item">
+					<form:label path="callCost">
+					call cost
+						<form:input class="form-control" type="text" path="callCost"
+							name="callCost" />
+					</form:label>
+					<form:errors path="callCost" cssClass="red" />
+				</div>
+				<div class="form-item">
+					<form:label path="smsCost">
+					sms cost
+						<form:input class="form-control" type="text" path="smsCost"
+							name="smsCost" />
+					</form:label>
+					<form:errors path="smsCost" cssClass="red" />
+				</div>
+				<div class="form-item">
+					<form:label path="numberOfMegabytes">
+						number of megabytes
+						<form:input class="form-control" type="text"
+							path="numberOfMegabytes" name="numberOfMegabytes" />
+					</form:label>
+					<form:errors path="numberOfMegabytes" cssClass="red" />
+				</div>
+				<div class="form-item">
+					<form:label path="description">
+						description
+						<form:input class="form-control" type="text" path="description"
+							name="description" />
+					</form:label>
+					<form:errors path="description" cssClass="red" />
+				</div>
+				<div class="form-item">
+					<form:label path="">
+						<input class="btn btn-dark" type="submit" value="Update" />
+					</form:label>
+				</div>
+			</form:form>
 
-</div>
+		</div>
 	</main>
 	<jsp:include page='footer.jsp'>
 		<jsp:param name="footer" value="" />
