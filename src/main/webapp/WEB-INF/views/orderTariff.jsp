@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 	    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +28,15 @@
 	</jsp:include>
 	<main>
 	<div class="content-header">
+			<sec:authorize access="hasRole('ADMIN')">
+			<a href="/admin/catalog">&#8592; <spring:message
+					code="label.back"></spring:message></a>
+		</sec:authorize>
+		<sec:authorize access="!hasRole('ADMIN')">
 			<a href="/catalog">&#8592; <spring:message
 					code="label.back"></spring:message></a>
+		</sec:authorize>
+			
 					
 <%-- 							<div class="languages">
 								<a href="${pageContext.request.contextPath}/orderTariff/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&lang=en">Tariff

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 	<!DOCTYPE html>
 	<html>
 
@@ -57,7 +59,12 @@
 			  </table>
 			  <a href= "orderTariff/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}">Order Tariff</a>
 			</div>
+				<sec:authorize access="hasRole('ADMIN')">
+			<a href="/admin/catalog">Back</a>
+		</sec:authorize>
+		<sec:authorize access="!hasRole('ADMIN')">
 			<a href="catalog">Back</a>
+		</sec:authorize>
 		</main>
 
 		<jsp:include page='footer.jsp'>

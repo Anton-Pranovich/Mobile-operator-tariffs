@@ -52,7 +52,7 @@ public class AdminController {
 		return "start";
 	}
 
-	@PostMapping("/admin/addTariff")
+	@PostMapping("admin/addTariff")
 	public String addProduct(@ModelAttribute @Valid Tariff tariff, BindingResult bindingResult, Model model)
 			throws SQLException {
 		if (bindingResult.hasErrors()) {

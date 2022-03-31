@@ -42,30 +42,26 @@
 
 		<div class="col-md-10 px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 			<h2 class="display-4">Best Tariff</h2>
-			<p class="lead">Quickly build an effective pricing table for your
-				potential customers with this Bootstrap example. It's built with
-				default Bootstrap components and utilities with little
-				customization.</p>
+			<p class="lead">Quick view of tariffs of mobile operators and registration of an application for connection</p>
 		</div>
 
 		<div class="container col-md-4">
 			<div class="card-deck mb-3 text-center">
 				<div class="card mb-4 box-shadow">
 					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">Pro</h4>
+						<h4 class="my-0 font-weight-normal">Комфорт L</h4>
 					</div>
 					<div class="card-body">
 						<h1 class="card-title pricing-card-title">
-							$15 <small class="text-muted">/ mo</small>
+							18.5 BYN <small class="text-muted">/ month</small>
 						</h1>
 						<ul class="list-unstyled mt-3 mb-4">
-							<li>20 users included</li>
-							<li>10 GB of storage</li>
-							<li>Priority email support</li>
-							<li>Help center access</li>
+							<li>A1</li>
+							<li>0.01 BYN/min</li>
+							<li>4 GB internet traffic</li>
+							<li>0.05 BYN/sms</li>
 						</ul>
-						<button type="button" class="btn btn-lg btn-block btn-primary">Get
-							started</button>
+						<a class="btn btn-info btn-lg" href="/orderTariff/1?name=Комфорт%20L&operator=A1">Get started</a>
 					</div>
 				</div>
 			</div>

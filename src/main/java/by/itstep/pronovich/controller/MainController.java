@@ -31,8 +31,6 @@ public class MainController {
 	@Autowired
 	private TariffDaoImpl dao;
 	private List<Tariff> tariffCatalog = new ArrayList<>();
-	private String message;
-
 	private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
 	@RequestMapping(value = { "/admin/addTariff" })
@@ -75,9 +73,7 @@ public class MainController {
 			model.addAttribute("list", tariffCatalog);
 			log.info("search parameters are empty. Show all tarifs ");
 		}
-		message = "Found " + tariffCatalog.size() + " tariff(s)";
 		model.addAttribute("tariffCatalog", tariffCatalog);
-		model.addAttribute("message", message);
 
 		return "catalog";
 	}
@@ -95,7 +91,6 @@ public class MainController {
 			model.addAttribute("list", tariffCatalog);
 			log.info("search parameters are empty. Show all tarifs ");
 		}
-		message = "Found " + tariffCatalog.size() + " tariff(s)";
 		model.addAttribute("tariffCatalog", tariffCatalog);
 		return "catalog";
 	}

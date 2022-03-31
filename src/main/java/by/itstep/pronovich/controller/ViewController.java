@@ -42,7 +42,6 @@ public class ViewController {
 	public String showOrderList(Model model) {
 		try {
 			orderList = dao.showOrderList();
-			System.out.println("view contr");
 			model.addAttribute("list", orderList);
 			log.info("Show orders");
 		} catch (SQLException e) {
@@ -70,6 +69,8 @@ public class ViewController {
 		log.info("Show information about us");
 		return "aboutUs";
 	}
+	
+	
 	@GetMapping("admin/aboutUs")
 	public String adminAboutUs() {
 		log.info("Show information about us");

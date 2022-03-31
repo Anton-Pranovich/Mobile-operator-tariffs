@@ -3,12 +3,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catalog</title>
+<style type="text/css">
+  .transparent25 {
+    filter: alpha(Opacity=70);
+    opacity: 0.70; 
+   }
+</style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link href="../../../../resources/css/page.css" rel="stylesheet"
@@ -29,7 +36,7 @@
 		<table class="table table-bordered">
 			<thead class="thead-dark">
 				<tr>
-					
+
 					<th scope="col">Name</th>
 					<th scope="col">Mobile operator</th>
 					<th scope="col">Subscription fee</th>
@@ -38,23 +45,27 @@
 					<th scope="col">number Of Megabytes</th>
 					<th scope="col">description</th>
 					<sec:authorize access="hasRole('ADMIN')">
-					<th scope="col">edit tariff</th>
+						<th scope="col">edit tariff</th>
 					</sec:authorize>
 				</tr>
 			</thead>
 			<tbody>
 
+			
+
 				<c:forEach items="${tariffCatalog}" var="tariff">
+
 					<tr>
-							<sec:authorize access="hasRole('ADMIN')">
-				<td><a
-							href="/admin/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}">
-								<c:out value="${tariff.name}" />
-						</a></td>
-		</sec:authorize>
-		<sec:authorize access="!hasRole('ADMIN')">
-						<td><a
-							href="/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}"><c:out value="${tariff.name}" /></a></td>
+						<sec:authorize access="hasRole('ADMIN')">
+							<td><a
+								href="/admin/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}">
+									<c:out value="${tariff.name}" />
+							</a></td>
+						</sec:authorize>
+						<sec:authorize access="!hasRole('ADMIN')">
+							<td><a
+								href="/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}&subscriptionFee=${tariff.subscriptionFee}&callCost=${tariff.callCost}&smsCost=${tariff.smsCost}&numberOfMegabytes=${tariff.numberOfMegabytes}&description=${tariff.description}"><c:out
+										value="${tariff.name}" /></a></td>
 						</sec:authorize>
 						<td><c:out value="${tariff.operator}" /></td>
 						<td><c:out value=" ${tariff.subscriptionFee}" /></td>
@@ -72,6 +83,9 @@
 						</sec:authorize>
 					</tr>
 				</c:forEach>
+					<c:if test="${fn:length(tariffCatalog) == 0}">
+					<h2 style="color: red">&#128532; There is no such tariff in the catalog</h2>
+				</c:if>
 			</tbody>
 		</table>
 		<sec:authorize access="hasRole('ADMIN')">
@@ -80,6 +94,7 @@
 		<sec:authorize access="!hasRole('ADMIN')">
 			<a href="start">Back</a>
 		</sec:authorize>
+		<div><img class="transparent25" src="https://justarrived.by/media/cache/blog_big/uploads/App/Entity/Blog/abdd5d918045c7851d1fec4a0be62ec5277ca71d.jpeg"></div>
 	</main>
 
 	<jsp:include page='footer.jsp'>

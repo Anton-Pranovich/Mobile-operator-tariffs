@@ -10,17 +10,18 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="start">Home
+
+				<sec:authorize access="hasRole('ADMIN')">
+									<li class="nav-item active"><a class="nav-link" href="/admin/start">Home
 							<span class="sr-only">(current)</span>
 					</a></li> 
-				<li class="nav-item"><a class="nav-link" href="catalog">Tariff
+				<li class="nav-item"><a class="nav-link" href="/admin/catalog">Tariff
 						Catalog</a></li>
-				<li class="nav-item"><a class="nav-link disabled" href="#">About
+				<li class="nav-item"><a class="nav-link disabled" href="/admin/aboutUs">About
 						us</a></li>
-				<sec:authorize access="hasRole('ADMIN')">
-					<li class="nav-item"><a class="nav-link" href="addTariff">Add
+					<li class="nav-item"><a class="nav-link" href="/admin/addTariff">Add
 							tariffs</a></li>
-							<li class="nav-item"><a class="nav-link" href="orderList">Order list
+							<li class="nav-item"><a class="nav-link" href="/admin/orderList">Order list
 							</a></li>
 					<li class="nav-item">
 						<form action="/logout" method="POST">
@@ -30,6 +31,13 @@
 					</li>
 				</sec:authorize>
 				<sec:authorize access="!hasRole('ADMIN')">
+									<li class="nav-item active"><a class="nav-link" href="/start">Home
+							<span class="sr-only">(current)</span>
+					</a></li> 
+				<li class="nav-item"><a class="nav-link" href="/catalog">Tariff
+						Catalog</a></li>
+				<li class="nav-item"><a class="nav-link disabled" href="/aboutUs">About
+						us</a></li>
 					<li class="nav-item"><a class="btn btn-light" href="/login">Log
 							In</a></li>
 				</sec:authorize>
