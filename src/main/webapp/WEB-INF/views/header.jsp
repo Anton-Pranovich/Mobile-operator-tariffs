@@ -20,6 +20,8 @@
 				<sec:authorize access="hasRole('ADMIN')">
 					<li class="nav-item"><a class="nav-link" href="addTariff">Add
 							tariffs</a></li>
+							<li class="nav-item"><a class="nav-link" href="orderList">Order list
+							</a></li>
 					<li class="nav-item">
 						<form action="/logout" method="POST">
 							<sec:csrfInput />

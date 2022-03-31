@@ -16,6 +16,7 @@ import by.itstep.pronovich.dao.ConnectionUrl;
 import by.itstep.pronovich.dao.TariffDao;
 import by.itstep.pronovich.exception.AddException;
 import by.itstep.pronovich.exception.DaoSQLException;
+import by.itstep.pronovich.model.Order;
 import by.itstep.pronovich.model.Tariff;
 
 @Repository
@@ -26,6 +27,8 @@ public class TariffDaoImpl implements TariffDao {
 	private static final String SQL_ADD_TARIFF_QUERY = "INSERT INTO tariffs (name, operator, subscriptionFee, call_cost, sms_cost, number_of_megabytes, description ) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')";
 	private static final String SQL_FIND_TARIFF_LIKE_QUERY = "SELECT * FROM tariffs WHERE name LIKE ?";
 	private static final String SQL_SELECT_ALL_TARIFF_QUERY = "SELECT * FROM tariffs";
+	private static final String SQL_SELECT_ALL_ORDER_QUERY = "SELECT * FROM orders";
+	private static final String SQL_ADD_ORDER_QUERY = "INSERT INTO orders (tariff_name, operator, first_name, last_name, phone_number) VALUES ('%s', '%s', '%s', '%s', '%s')";
 
 	private static final Logger log = LoggerFactory.getLogger(TariffDaoImpl.class);
 
@@ -48,6 +51,24 @@ public class TariffDaoImpl implements TariffDao {
 		}
 		log.info("show tariffs");
 		return tariffCatalog;
+	}
+	public List<Order> showOrderList() throws SQLException {
+		Connection connection = ConnectionUrl.getConnection();
+		Statement statement = connection.createStatement();
+		List<Order> orderList = new ArrayList<>();
+		ResultSet result = statement.executeQuery(SQL_SELECT_ALL_ORDER_QUERY);
+		while (result.next()) {
+			long id = Long.parseLong(result.getString(1));
+			String name = result.getString(2);
+			String operator = result.getString(3);
+			String firstName = result.getString(4);
+			String lastName = result.getString(5);
+			String phoneNumber = result.getString(6);
+			orderList.add(
+					new Order(id, name, operator, firstName, lastName, phoneNumber));
+		}
+		log.info("show tariffs");
+		return orderList;
 	}
 
 	public void addProduct(String name, String operator, String subscriptionFee, String description, String callCost,
@@ -136,4 +157,22 @@ public class TariffDaoImpl implements TariffDao {
 		}
 		return tariffCatalog;
 	}
+
+	public void addTariffOrder(String name, String operator, String firstName, String lastName, String phoneNumber) throws SQLException {
+		Connection connection = ConnectionUrl.getConnection();
+		Statement statement = connection.createStatement();
+		String[] data = { name, operator, firstName, lastName, phoneNumber };
+		if (!name.isEmpty() && !operator.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty()&&!phoneNumber.isEmpty()) {
+			String query = String.format(SQL_ADD_ORDER_QUERY, data[0], data[1], data[2], data[3], data[4]);
+			System.out.println(query);
+			statement.execute(query);
+			log.info("tariff has been added ");
+		} else {
+			log.error("throw addException ");
+			throw new AddException();
+		}
+		
+	}
+
+
 }

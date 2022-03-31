@@ -55,6 +55,7 @@
 				  </tr>
 				</tbody>
 			  </table>
+			  <a href= "orderTariff/${tariff.id}?name=${tariff.name}&operator=${tariff.operator}">Order Tariff</a>
 			</div>
 			<a href="catalog">Back</a>
 		</main>
